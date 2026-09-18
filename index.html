@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Backyard Sessions · Solo Stove × Upperhand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Caveat:wght@500;700&family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --paper:#F6F3EB; --ink:#111111; --blue:#0A45FF; --lime:#D7FF00; --pink:#E04375; --fire:#F04E23;
+    --rule:rgba(17,17,17,.16); --grid:rgba(17,17,17,.055);
+    --disp:"Archivo Black","Arial Black",sans-serif; --sans:"Hanken Grotesk",Helvetica,Arial,sans-serif;
+    --mono:"JetBrains Mono",ui-monospace,Menlo,monospace; --hand:"Caveat",cursive;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%;background:#0b0b0b;overflow:hidden;font-family:var(--sans);color:var(--ink);-webkit-font-smoothing:antialiased}
+  #stage{position:absolute;left:50%;top:50%;width:1600px;height:900px;transform:translate(-50%,-50%) scale(var(--s,1));transform-origin:center;overflow:hidden;background:var(--paper)}
+  .slide{position:absolute;inset:0;opacity:0;visibility:hidden;transition:opacity .35s ease}
+  .slide.on{opacity:1;visibility:visible}
+  .paper{background-color:var(--paper);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:40px 40px}
+  .graph{background-color:#FBFAF4;background-image:linear-gradient(rgba(10,69,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(10,69,255,.10) 1px,transparent 1px),linear-gradient(rgba(10,69,255,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(10,69,255,.05) 1px,transparent 1px);background-size:200px 200px,200px 200px,40px 40px,40px 40px}
+  .black{background:var(--ink);color:var(--paper)}
+  #grain{position:absolute;inset:0;z-index:50;pointer-events:none;opacity:.22;mix-blend-mode:multiply}
+  .abs{position:absolute}
+  .ph{position:absolute;background-size:cover;background-position:center;background-color:#222}
+  .ph.frame{box-shadow:0 0 0 10px #fff,0 18px 40px rgba(0,0,0,.28)}
+
+  /* chrome */
+  #nav{position:absolute;left:96px;top:34px;z-index:40;display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;border-radius:99px;padding:10px 18px 10px 16px;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+  #nav i{width:7px;height:7px;border-radius:50%;background:var(--lime);display:block} #nav i+i{background:var(--fire);margin-left:-8px}
+  #nav svg{height:13px;width:auto;color:#fff}
+  #idx{position:absolute;right:56px;top:42px;z-index:40;font:500 12px/1 var(--mono);letter-spacing:.16em;color:#777;mix-blend-mode:difference}
+  #rail{position:absolute;left:0;top:0;bottom:0;width:56px;background:var(--blue);z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0}
+  #rail img{width:30px;height:30px;display:block}
+  #rail span{writing-mode:vertical-rl;transform:rotate(180deg);font:500 11px/1 var(--mono);letter-spacing:.24em;color:#fff;text-transform:uppercase;white-space:nowrap}
+  #rail b{width:10px;height:10px;background:var(--lime);display:block}
+  #bar{position:absolute;left:56px;right:0;bottom:0;height:4px;z-index:40;background:rgba(127,127,127,.25)} #bar i{display:block;height:100%;background:var(--fire);width:10%;transition:width .4s ease}
+
+  /* type */
+  .k{font:500 12px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .k::before{content:"";width:8px;height:8px;background:var(--fire);display:block}
+  h1,h2{font-family:var(--disp);font-weight:400;text-transform:uppercase;letter-spacing:-.015em;line-height:.9}
+  .dot{display:inline-block;width:.2em;height:.2em;background:var(--lime);margin-left:.06em;vertical-align:baseline}
+  .dot.f{background:var(--fire)} .dot.b{background:var(--blue)}
+  p{font:400 19px/1.5 var(--sans)} .mono{font-family:var(--mono)}
+  .cap{font:500 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#6b675f}
+  .black .cap{color:#8d8a83}
+  .hand{font:700 30px/1.05 var(--hand);color:var(--blue);transform:rotate(-4deg)}
+  .hl{background:var(--lime);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+  .sq{position:absolute;width:26px;height:26px;background:var(--lime)}
+  .tape{position:absolute;width:120px;height:30px;background:rgba(224,67,117,.82);transform:rotate(-5deg)}
+  .n{font:400 15px/1 var(--mono);letter-spacing:.1em;color:var(--fire)}
+  .row{display:grid;border-top:1px solid var(--rule);align-items:center}
+  .black .row{border-color:rgba(246,243,235,.2)}
+  a{color:inherit}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="solo" viewBox="0 0 2246.4 284.24">
+    <path d="m2098.8 282.7c-11.03-7.35-17.46-18.68-17.46-30.93 0-31.85 43.19-31.55 43.19-78.41v-12.56c28.18 13.48 45.33 38.59 45.33 65.85 0 23.89-13.48 45.33-36.75 57.58 65.24-0.92 113.32-43.19 113.32-100.15 0-86.06-109.03-75.04-109.34-168.15v-15.93c-43.8 6.43-75.04 37.98-75.04 75.34 0 27.87 16.84 43.8 16.84 64.32 0 13.78-7.66 22.97-18.99 22.97-13.78 0-27.87-14.09-35.83-35.53-12.56 18.07-18.99 38.29-18.99 58.81 0 49.31 36.75 87.29 93.72 96.78" fill="#f04e23"/>
+    <g fill="currentColor">
+    <path d="m974.94 270.76c17.46 9.19 36.45 13.48 59.42 13.48 55.74 0 89.74-26.03 89.74-69.22 0-93.11-157.43-65.54-157.43-113.94 0-16.23 17.76-25.11 50.54-25.11 44.1 0 69.53 16.54 69.53 45.02h32.47v-84.84h-34.92v10.41c0 8.58-6.74 9.49-18.99 2.76-15.62-8.58-34-13.17-57.58-13.17-55.74 0-90.35 25.42-90.35 67.99 0 89.74 155.89 66.77 155.89 114.55 0 16.54-18.99 25.73-53.9 25.73-45.02 0-66.16-14.4-66.16-45.02h-32.47v84.84h34.92v-10.41c0-8.88 7.04-9.8 19.3-3.06"/>
+    <path d="m1978.1 187.14c0-60.64-48.7-101.99-119.75-101.99s-121.9 41.35-121.9 99.54 51.76 99.54 128.33 99.54c60.34 0 101.68-23.89 108.42-62.17h-43.49c-4.59 13.78-30.94 22.97-66.16 22.97-45.38 0-71.46-16.15-76.78-47.17h191.32v-10.72zm-120.37-62.78c36.3 0 60.02 14.73 68.04 41.04h-137.27c7.88-26.26 32.38-41.04 69.23-41.04"/>
+    <path d="m1638.3 88.21v32.77h14.39c13.48 0 19.3 7.04 14.09 18.68l-41.49 94.15-41.82-94.15c-5.21-11.64 0-18.68 13.78-18.68h13.64v-32.77h-111.97v32.77h11.05c10.72 0 17.15 3.98 21.13 12.86l65.24 147.32h47.78l65.24-147.32c3.98-8.88 10.41-12.86 21.13-12.86h11.04v-32.77z"/>
+    <path d="m1170.7 70.14c0 12.25-5.82 18.07-18.07 18.07h-12.58v32.77h24.52v142.11c0 12.25 5.82 18.07 18.38 18.07h72.28v-32.46h-24.5c-12.56 0-18.38-5.82-18.38-18.07v-109.65h42.88v-32.77h-42.88v-52.07h-41.65z"/>
+    <path d="m1383.3 85.15c-71.67 0-120.67 40.43-120.67 99.54s49 99.54 120.67 99.54 120.67-40.43 120.67-99.54-49-99.54-120.67-99.54m0 159.88c-44.41 0-70.44-22.36-70.44-60.34s26.03-60.34 70.44-60.34 70.44 22.36 70.44 60.34-26.03 60.34-70.44 60.34"/>
+    <path d="m57.27 270.76c17.46 9.19 36.45 13.48 59.42 13.48 55.74 0 89.74-26.03 89.74-69.22 0-93.41-157.73-66.16-157.73-114.24 0-16.23 17.76-24.81 50.23-24.81 44.72 0 70.14 16.54 70.14 45.02h32.47v-84.84h-34.92v10.41c0 8.58-6.74 9.49-18.99 2.76-15.62-8.58-34-13.17-57.58-13.17-55.44 0-90.05 25.42-90.05 67.99 0 89.74 155.59 66.77 155.59 114.55 0 16.54-18.99 25.73-54.52 25.73-44.41 0-65.54-14.4-65.54-48.09h-32.47v87.9h34.92v-10.41c0-8.88 7.04-9.8 19.3-3.06"/>
+    <path d="m528.02 281.17h71.06v-32.47h-23.28c-14.7 0-19.6-4.9-19.6-19.6v-173.35c0-14.7-4.9-19.6-19.6-19.6h-71.05v32.47h23.28c14.7 0 19.6 4.9 19.6 19.6v173.35c0 14.7 4.9 19.6 19.6 19.6"/>
+    <path d="m719.75 85.15c-71.67 0-120.67 40.43-120.67 99.54s49 99.54 120.67 99.54 120.67-40.43 120.67-99.54-49-99.54-120.67-99.54m0 159.88c-44.41 0-70.44-22.36-70.44-60.34s26.03-60.34 70.44-60.34 70.44 22.36 70.44 60.34-26.03 60.34-70.44 60.34"/>
+    <path d="m349.46 85.15c-71.67 0-120.67 40.43-120.67 99.54s49 99.54 120.67 99.54 120.67-40.43 120.67-99.54-49-99.54-120.67-99.54m0 159.88c-44.41 0-70.44-22.36-70.44-60.34s26.03-60.34 70.44-60.34 70.44 22.36 70.44 60.34-26.03 60.34-70.44 60.34"/>
+    </g>
+  </symbol>
+</svg>
+
+<div id="stage">
+  <!-- 01 COVER -->
+  <section class="slide black on" data-t="Cover">
+    <div class="ph" style="left:640px;top:0;width:960px;height:900px;background-image:url(img/night.jpg);background-position:60% 50%"></div>
+    <div class="abs" style="left:640px;top:0;width:320px;height:900px;background:linear-gradient(90deg,#111,rgba(17,17,17,0))"></div>
+    <div class="sq" style="right:56px;bottom:60px"></div>
+    <div class="abs" style="left:120px;top:150px;display:flex;align-items:center;gap:18px">
+      <svg style="height:30px;width:238px;color:#F6F3EB"><use href="#solo"/></svg>
+      <span class="mono" style="font-size:20px;color:#8d8a83">×</span>
+      <span style="font:400 24px/1 var(--disp);letter-spacing:-.01em">UPPERHAND</span>
+    </div>
+    <h1 class="abs" style="left:116px;top:236px;font-size:158px;width:900px">The back&shy;yard is the venue<span class="dot"></span></h1>
+    <p class="abs" style="left:120px;top:706px;width:520px;color:#cfcbc2">A backyard concert series and an artist content engine, built around the fire you already make.</p>
+    <div class="cap abs" style="left:120px;bottom:54px">Pitch v1 · September 2026 · Prepared for Solo Brands marketing</div>
+    <div class="hand abs" style="left:1010px;top:470px;color:var(--lime);transform:rotate(-6deg)">the stage is<br>already lit&nbsp;↘</div>
+  </section>
+
+  <!-- 02 THE READ -->
+  <section class="slide paper" data-t="The read">
+    <div class="k abs" style="left:120px;top:120px">01 · The read</div>
+    <h2 class="abs" style="left:116px;top:160px;font-size:104px;width:800px">You wrote the thesis. Nobody scored it<span class="dot f"></span></h2>
+    <p class="abs" style="left:120px;top:590px;width:600px">Every line Solo Stove says is about gathering. <span class="hl">"It's about the moments that happen around them."</span> The brand has the fire, the food, the drinks and the list. It has never had a show.</p>
+    <div class="hand abs" style="left:130px;top:770px">that's the whole opening →</div>
+    <div class="abs" style="left:920px;top:150px;width:600px">
+      <div class="row" style="grid-template-columns:210px 1fr;padding:30px 0"><div style="font:400 96px/.9 var(--disp)">2</div><div><b>Artists in fifteen years.</b><p style="font-size:16px;color:#55514a">Snoop as a spokesman, and one song on a parade float. No series, no festival, no tour.</p></div></div>
+      <div class="row" style="grid-template-columns:210px 1fr;padding:30px 0"><div style="font:400 96px/.9 var(--disp);color:var(--blue)">3.8M</div><div><b>People on the email list.</b><p style="font-size:16px;color:#55514a">One of the biggest owned audiences in outdoor. Nothing on the calendar to invite them to.</p></div></div>
+      <div class="row" style="grid-template-columns:210px 1fr;padding:30px 0;border-bottom:1px solid var(--rule)"><div style="font:400 96px/.9 var(--disp);color:var(--fire)">UGC</div><div><b>Beats scripted. Your words.</b><p style="font-size:16px;color:#55514a">The big campaign era is over. What works now is real people, real yards, shot like it happened.</p></div></div>
+      <div class="cap" style="margin-top:16px">Sources: Solo Brands filings, press and CMO interviews, 2023 to 2026</div>
+    </div>
+  </section>
+
+  <!-- 03 THE IDEA -->
+  <section class="slide" data-t="The idea" style="background:var(--blue);color:#fff">
+    <div class="ph" style="left:56px;top:0;width:760px;height:900px;background-image:url(img/patio.jpg)"></div>
+    <div class="sq" style="left:790px;top:120px;background:var(--fire)"></div>
+    <div class="k abs" style="left:880px;top:120px;color:#fff">02 · The idea</div>
+    <h2 class="abs" style="left:876px;top:160px;font-size:132px;width:700px">Back&shy;yard Sessions<span class="dot"></span></h2>
+    <p class="abs" style="left:880px;top:560px;width:620px;font-size:22px">A concert series in real backyards. Emerging artists play a short set by the fire. Guests cook on the Pi, pull drinks from the Windchill, and sit around the Bonfire. One host ties every night together. We film all of it.</p>
+    <div class="abs" style="left:880px;top:770px;display:flex;gap:10px">
+      <span class="mono" style="background:#111;padding:10px 14px;font-size:12px;letter-spacing:.14em">LIVE SERIES</span>
+      <span class="mono" style="background:var(--lime);color:#111;padding:10px 14px;font-size:12px;letter-spacing:.14em">CONTENT ENGINE</span>
+      <span class="mono" style="border:1px solid #fff;padding:10px 14px;font-size:12px;letter-spacing:.14em">ARTIST CREATORS</span>
+    </div>
+  </section>
+
+  <!-- 04 PRODUCTS -->
+  <section class="slide paper" data-t="Every product gets a job">
+    <div class="k abs" style="left:120px;top:120px">03 · Hands on, not on a plinth</div>
+    <h2 class="abs" style="left:116px;top:156px;font-size:88px;width:1300px">Every product gets a job<span class="dot b"></span></h2>
+    <div class="abs" style="left:120px;top:330px;right:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/lid.jpg)"></div><div class="n" style="margin-top:16px">01 · BONFIRE / SUMMIT</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE STAGE</h3><p style="font-size:15px;color:#55514a">The artist plays beside it. Every wide shot has a flame in it.</p></div>
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/pizza-toss.jpg);background-position:70% 40%"></div><div class="n" style="margin-top:16px">02 · PI PRIME</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE KITCHEN</h3><p style="font-size:15px;color:#55514a">Guests make their own. Dough in the air is the best b-roll you own.</p></div>
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/cooler.jpg)"></div><div class="n" style="margin-top:16px">03 · WINDCHILL</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE BAR</h3><p style="font-size:15px;color:#55514a">Drinks come out of it all night. The newest product gets the most hands.</p></div>
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/mesa.jpg)"></div><div class="n" style="margin-top:16px">04 · MESA</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">EVERY TABLE</h3><p style="font-size:15px;color:#55514a">S'mores at arm's reach. The close-up that sells the small one.</p></div>
+    </div>
+    <div class="tape" style="left:400px;top:316px"></div>
+    <div class="hand abs" style="right:80px;top:150px;width:260px;text-align:right">nobody demos anything.<br>they just use it.</div>
+  </section>
+
+  <!-- 05 THE NIGHT -->
+  <section class="slide graph" data-t="The night">
+    <div class="k abs" style="left:120px;top:120px">04 · Run of show</div>
+    <h2 class="abs" style="left:116px;top:156px;font-size:88px">One night, start to embers<span class="dot f"></span></h2>
+    <div class="abs" style="left:120px;top:320px;width:820px">
+      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">5:00</span><p><b>Load in. Light the fire.</b> Crew sets three cameras and hides them.</p></div>
+      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">6:00</span><p><b>Thirty guests arrive.</b> Pizzas go in. The cooler opens.</p></div>
+      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">7:00</span><p><b>The host opens.</b> First artist, four songs, no stage.</p></div>
+      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">7:45</span><p><b>Second artist.</b> Golden hour. This is the hero film.</p></div>
+      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">8:30</span><p><b>Song circle at the fire.</b> S'mores. The part people post.</p></div>
+      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0;border-bottom:1px solid var(--rule)"><span class="mono" style="font-size:20px;font-weight:700">9:30</span><p><b>Embers.</b> Guests leave with a song stuck in their head.</p></div>
+    </div>
+    <div class="abs" style="left:1010px;top:300px;width:510px;background:var(--lime);padding:36px 36px 40px">
+      <div class="k">The host</div>
+      <h3 style="font:400 50px/.92 var(--disp);margin:14px 0 16px">ONE FACE. EVERY NIGHT<span class="dot b"></span></h3>
+      <p style="font-size:17px">Lights the fire, makes the first pizza, introduces the artist, asks the one good question. The host is what turns a run of events into a series people follow.</p>
+      <div class="hand" style="margin-top:18px;font-size:26px">musician first, presenter second</div>
+    </div>
+    <div class="abs" style="left:1010px;top:736px;width:510px;background:#111;color:#fff;padding:20px 36px"><span class="cap" style="color:var(--lime)">Guest list</span><p style="font-size:15px;margin-top:4px">Locals, Solo customers from the email list, and a few creators who will film it themselves.</p></div>
+  </section>
+
+  <!-- 06 CONTENT ENGINE -->
+  <section class="slide black" data-t="The content engine">
+    <div class="ph" style="left:56px;top:0;width:620px;height:900px;background-image:url(img/beach.jpg);background-position:52% 50%"></div>
+    <div class="abs" style="left:300px;top:250px;width:260px;height:260px;border-radius:50%;background:var(--pink);mix-blend-mode:screen;opacity:.92"></div>
+    <div class="k abs" style="left:750px;top:120px">05 · The content engine</div>
+    <h2 class="abs" style="left:746px;top:156px;font-size:96px;width:800px">One night. A quarter of content<span class="dot"></span></h2>
+    <div class="abs" style="left:750px;top:410px;width:780px">
+      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">1</span><b>Hero film</b><span class="cap">3 to 5 min · YouTube, site, PDP</span></div>
+      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">6</span><b>Paid cuts</b><span class="cap">:15 and :30 · Meta, TikTok, CTV</span></div>
+      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">20+</span><b>Social verticals</b><span class="cap">Reels, Shorts, product moments</span></div>
+      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">2</span><b>Live session tracks</b><span class="cap">Original sound you own</span></div>
+      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0;border-bottom:1px solid rgba(246,243,235,.2)"><span style="font:400 40px/1 var(--disp);color:var(--lime)">1</span><b>Email story</b><span class="cap">For the 3.8M · "come to the next one"</span></div>
+      <div class="cap" style="margin-top:16px">Targets per session. Shot once, cut for every channel.</div>
+    </div>
+  </section>
+
+  <!-- 07 ARTISTS AS CREATORS -->
+  <section class="slide paper" data-t="Artists as creators">
+    <div class="ph frame" style="left:1130px;top:150px;width:380px;height:475px;background-image:url(img/uh-cassette.jpg);transform:rotate(2.5deg)"></div>
+    <div class="tape" style="left:1260px;top:132px"></div>
+    <div class="k abs" style="left:120px;top:120px">06 · After the show</div>
+    <h2 class="abs" style="left:116px;top:156px;font-size:100px;width:980px">Not influencers. <span style="color:var(--fire)">Song&shy;writers</span><span class="dot b"></span></h2>
+    <p class="abs" style="left:120px;top:400px;width:900px">The same artists become your creators. Ten artists, ten angles, ten ads. Each one picks a Solo moment, writes a hook around it, and films it at home with the product. It is the play we ran for Poplin, pointed at a brand with a much better prop.</p>
+    <div class="abs" style="left:120px;top:570px;width:960px;display:grid;grid-template-columns:repeat(3,1fr);gap:0">
+      <div style="padding:22px 24px 26px 0;border-top:3px solid #111"><h3 style="font:400 26px/1 var(--disp)">ORIGINAL SOUND</h3><p style="font-size:15px;color:#55514a;margin-top:8px">A Solo hook that lives on Reels and TikTok long after the flight ends.</p></div>
+      <div style="padding:22px 24px 26px;border-top:3px solid var(--fire)"><h3 style="font:400 26px/1 var(--disp)">REAL BACKYARDS</h3><p style="font-size:15px;color:#55514a;margin-top:8px">First fire of fall. Pizza night. The tailgate. The dad. Shot where it happens.</p></div>
+      <div style="padding:22px 0 26px 24px;border-top:3px solid var(--blue)"><h3 style="font:400 26px/1 var(--disp)">BUILT-IN FANS</h3><p style="font-size:15px;color:#55514a;margin-top:8px">Warm audiences who already trust the person holding the guitar.</p></div>
+    </div>
+    <div class="abs cap" style="left:120px;bottom:54px;display:flex;gap:22px;align-items:center"><span style="color:#111">Watch the format ↗</span>
+      <a href="https://www.tiktok.com/@bonnerblack/video/7263482919706955050" target="_blank">TikTok 01</a><a href="https://www.tiktok.com/@troy_music/video/7262725044579683627" target="_blank">TikTok 02</a><a href="https://www.instagram.com/p/Cv-RrUSgo-l/?hl=en" target="_blank">Instagram</a><a href="https://drive.google.com/file/d/1fxwYziP3GYbXB90qHTVwG9eJMSeSKar4/view?usp=sharing" target="_blank">Film 01</a><a href="https://drive.google.com/file/d/1sq1ey1VHFXXf9Nku8F7uZJWWyrc3opWO/view?usp=sharing" target="_blank">Film 02</a></div>
+    <div class="hand abs" style="left:1150px;top:660px;width:340px;color:var(--fire)">turn one night into<br>something playable</div>
+  </section>
+
+  <!-- 08 ROLLOUT -->
+  <section class="slide paper" data-t="Rollout">
+    <div class="k abs" style="left:120px;top:120px">07 · Where it goes</div>
+    <h2 class="abs" style="left:116px;top:156px;font-size:100px">Start in one yard<span class="dot"></span></h2>
+    <svg class="abs" style="left:120px;top:330px" width="1420" height="440" viewBox="0 0 1420 440" fill="none"><path d="M10 400 H330 V290 H690 V180 H1050 V70 H1400" stroke="#0A45FF" stroke-width="10"/><g fill="#0A45FF"><rect x="0" y="388" width="24" height="24"/><rect x="318" y="278" width="24" height="24"/><rect x="678" y="168" width="24" height="24"/><rect x="1038" y="58" width="24" height="24"/></g><rect x="1388" y="58" width="24" height="24" fill="#D7FF00" stroke="#111" stroke-width="2"/></svg>
+    <div class="abs" style="left:120px;top:600px;width:300px"><div class="n">01 · PILOT</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">ONE BACKYARD</h3><p style="font-size:15px;color:#55514a">North Shore Chicago. Our yard, our crew, your product. Proof in one night.</p></div>
+    <div class="abs" style="left:450px;top:490px;width:320px"><div class="n">02 · THE RUN</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">FOUR NIGHTS, NORTH SHORE</h3><p style="font-size:15px;color:#55514a">Same host, new yard each time. Enough episodes to call it a series.</p></div>
+    <div class="abs" style="left:810px;top:380px;width:330px;background:var(--lime);padding:18px 20px;margin:-18px 0 0 -20px"><div class="n" style="color:#111">03 · THE SUBSET</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">ART BACKYARDS</h3><p style="font-size:15px">A few nights hosted in the yards of sculptors, muralists and makers. The yard is already a set. The owner is already a story.</p></div>
+    <div class="abs" style="left:1170px;top:270px;width:340px"><div class="n">04 · THEN</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">CITY BY CITY</h3><p style="font-size:15px;color:#55514a">Nashville, Austin, Denver, and wherever the list is densest. Local artists every time.</p></div>
+    <div class="hand abs" style="left:150px;top:420px">small on purpose ↓</div>
+  </section>
+
+  <!-- 09 THE PILOT -->
+  <section class="slide black" data-t="The pilot">
+    <div class="k abs" style="left:120px;top:120px">08 · The ask</div>
+    <h2 class="abs" style="left:116px;top:156px;font-size:112px;width:1300px">One night. One yard. One number<span class="dot f"></span></h2>
+    <div class="abs" style="left:120px;top:480px;right:64px;display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:0">
+      <div style="padding:26px 30px 0 0;border-top:3px solid var(--paper)"><div class="cap">We bring</div><p style="margin-top:12px;font-size:18px">The yard. The host. Two artists. A three-camera crew. The edit, the cuts and the tracks.</p></div>
+      <div style="padding:26px 30px 0;border-top:3px solid var(--fire)"><div class="cap" style="color:var(--fire)">Solo brings</div><p style="margin-top:12px;font-size:18px">Product: a Summit, a Pi Prime, a Windchill, six Mesas. One brand contact. A small paid test budget for the cuts.</p></div>
+      <div style="padding:26px 30px 30px;background:var(--lime);color:#111"><div class="cap" style="color:#111">What decides it</div><p style="margin-top:12px;font-size:18px">The cuts run against your current creative in your own media mix model. If they do not win, we stop.</p></div>
+    </div>
+    <div class="abs" style="left:120px;bottom:60px;font:400 22px/1.3 var(--sans);color:#cfcbc2">"The bravest marketers pilot, learn, and adapt." <span class="cap" style="margin-left:10px">Liz Vanzura, Nov 2024</span></div>
+  </section>
+
+  <!-- 10 CLOSE -->
+  <section class="slide black" data-t="Light it">
+    <div class="ph" style="left:56px;top:0;right:0;height:900px;background-image:url(img/flame.jpg);filter:contrast(1.05)"></div>
+    <div class="abs" style="left:56px;top:0;right:0;height:900px;background:linear-gradient(90deg,rgba(17,17,17,.92) 0%,rgba(17,17,17,.55) 55%,rgba(17,17,17,.1) 100%)"></div>
+    <div class="k abs" style="left:120px;top:120px">09 · Next</div>
+    <h1 class="abs" style="left:112px;top:150px;font-size:300px">Light it<span class="dot"></span></h1>
+    <div class="abs" style="left:120px;top:520px;width:700px">
+      <div class="row" style="grid-template-columns:70px 1fr;padding:16px 0"><span class="n" style="color:var(--lime)">01</span><p>Pick the night. We are holding October.</p></div>
+      <div class="row" style="grid-template-columns:70px 1fr;padding:16px 0"><span class="n" style="color:var(--lime)">02</span><p>Ship the product to the North Shore.</p></div>
+      <div class="row" style="grid-template-columns:70px 1fr;padding:16px 0;border-bottom:1px solid rgba(246,243,235,.2)"><span class="n" style="color:var(--lime)">03</span><p>We cast the host and the first two artists.</p></div>
+    </div>
+    <div class="abs" style="left:120px;bottom:56px;display:flex;align-items:center;gap:18px">
+      <span style="font:400 22px/1 var(--disp)">UPPERHAND</span><span class="cap">John Williamson · Greg McDonald · getupperhand.io</span>
+    </div>
+    <div class="sq" style="right:56px;bottom:60px"></div>
+  </section>
+
+  <!-- chrome -->
+  <div id="rail"><img src="img/uh-mark.png" alt="Upperhand" /><span>Backyard Sessions · Solo Stove × Upperhand</span><b></b></div>
+  <div id="nav"><i></i><i></i><span id="navt">Cover</span><svg viewBox="0 0 2246.4 284.24" width="103"><use href="#solo"/></svg></div>
+  <div id="idx">01 / 10</div>
+  <div id="bar"><i></i></div>
+  <svg id="grain"><filter id="nz"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#nz)"/></svg>
+</div>
+
+<script>
+  const stage=document.getElementById('stage'),S=[...document.querySelectorAll('.slide')],N=S.length;let c=0;
+  const fit=()=>stage.style.setProperty('--s',Math.min(innerWidth/1600,innerHeight/900));
+  addEventListener('resize',fit);fit();
+  function go(n){n=Math.max(0,Math.min(N-1,n));S[c].classList.remove('on');c=n;S[c].classList.add('on');
+    document.getElementById('idx').textContent=String(c+1).padStart(2,'0')+' / '+N;
+    document.getElementById('navt').textContent=S[c].dataset.t;
+    document.querySelector('#bar i').style.width=((c+1)/N*100)+'%';
+    history.replaceState(null,'',c?'#'+(c+1):location.pathname);}
+  addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(c+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(c-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(N-1)});
+  addEventListener('click',e=>{if(e.target.closest('a'))return;go(c+(e.clientX<innerWidth*.25?-1:1))});
+  let tx=0;addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
+  addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(c+(d<0?1:-1))},{passive:true});
+  go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>
