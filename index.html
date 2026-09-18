@@ -31,7 +31,7 @@
   #nav{position:absolute;left:96px;top:34px;z-index:40;display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;border-radius:99px;padding:10px 18px 10px 16px;font:500 12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
   #nav i{width:7px;height:7px;border-radius:50%;background:var(--lime);display:block} #nav i+i{background:var(--fire);margin-left:-8px}
   #nav svg{height:13px;width:auto;color:#fff}
-  #idx{position:absolute;right:56px;top:42px;z-index:40;font:500 12px/1 var(--mono);letter-spacing:.16em;color:#777;mix-blend-mode:difference}
+  #idx{position:absolute;right:56px;top:42px;z-index:40;font:500 14px/1 var(--mono);letter-spacing:.16em;color:#777;mix-blend-mode:difference}
   #rail{position:absolute;left:0;top:0;bottom:0;width:56px;background:var(--blue);z-index:40;display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:22px 0}
   #rail img{width:30px;height:30px;display:block}
   #rail span{writing-mode:vertical-rl;transform:rotate(180deg);font:500 11px/1 var(--mono);letter-spacing:.24em;color:#fff;text-transform:uppercase;white-space:nowrap}
@@ -39,22 +39,31 @@
   #bar{position:absolute;left:56px;right:0;bottom:0;height:4px;z-index:40;background:rgba(127,127,127,.25)} #bar i{display:block;height:100%;background:var(--fire);width:10%;transition:width .4s ease}
 
   /* type */
-  .k{font:500 12px/1.4 var(--mono);letter-spacing:.2em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
+  .k{font:500 14px/1.4 var(--mono);letter-spacing:.18em;text-transform:uppercase;display:flex;align-items:center;gap:10px}
   .k::before{content:"";width:8px;height:8px;background:var(--fire);display:block}
   h1,h2{font-family:var(--disp);font-weight:400;text-transform:uppercase;letter-spacing:-.015em;line-height:.9}
   .dot{display:inline-block;width:.2em;height:.2em;background:var(--lime);margin-left:.06em;vertical-align:baseline}
   .dot.f{background:var(--fire)} .dot.b{background:var(--blue)}
   p{font:400 19px/1.5 var(--sans)} .mono{font-family:var(--mono)}
-  .cap{font:500 11px/1.5 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#6b675f}
+  .cap{font:500 14px/1.5 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:#6b675f}
   .black .cap{color:#8d8a83}
   .hand{font:700 30px/1.05 var(--hand);color:var(--blue);transform:rotate(-4deg)}
   .hl{background:var(--lime);padding:0 .12em;box-decoration-break:clone;-webkit-box-decoration-break:clone}
   .sq{position:absolute;width:26px;height:26px;background:var(--lime)}
   .tape{position:absolute;width:120px;height:30px;background:rgba(224,67,117,.82);transform:rotate(-5deg)}
-  .n{font:400 15px/1 var(--mono);letter-spacing:.1em;color:var(--fire)}
+  .n{font:500 16px/1 var(--mono);letter-spacing:.1em;color:var(--fire)}
   .row{display:grid;border-top:1px solid var(--rule);align-items:center}
   .black .row{border-color:rgba(246,243,235,.2)}
   a{color:inherit}
+  #fx{position:absolute;left:0;top:0;width:1600px;height:900px;z-index:45;pointer-events:none}
+  .col{position:absolute;bottom:40px;width:340px;color:#fff;background:var(--blue);transform-origin:bottom;display:flex;flex-direction:column}
+  .col .pic{height:150px;background-size:cover;background-position:center;flex:0 0 auto}
+  .col .in{padding:18px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+  .col .big{font:400 76px/.85 var(--disp);letter-spacing:-.02em}
+  .col .big small{font:500 14px/1 var(--mono);letter-spacing:.12em;margin-left:8px;vertical-align:middle}
+  .col h3{font:400 25px/1 var(--disp)} .col p{font-size:16px;line-height:1.4}
+  .col .when{font:500 13px/1 var(--mono);letter-spacing:.14em;margin-top:auto;opacity:.85}
+  .col.lime{background:var(--lime);color:#111} .col.ink{background:#111}
 </style>
 </head>
 <body>
@@ -93,16 +102,17 @@
   </section>
 
   <!-- 02 THE READ -->
-  <section class="slide paper" data-t="The read">
-    <div class="k abs" style="left:120px;top:120px">01 · The read</div>
-    <h2 class="abs" style="left:116px;top:160px;font-size:84px;width:760px">You wrote the thesis. Nobody scored it<span class="dot f"></span></h2>
-    <p class="abs" style="left:120px;top:560px;width:600px">Every line Solo Stove says is about gathering. <span class="hl">"It's about the moments that happen around them."</span> The brand has the fire, the food, the drinks and the list. It has never had a show.</p>
-    <div class="hand abs" style="left:130px;top:760px">that's the whole opening →</div>
-    <div class="abs" style="left:900px;top:150px;width:630px">
-      <div class="row" style="grid-template-columns:290px 1fr;padding:30px 0"><div style="font:400 84px/.9 var(--disp)">2</div><div><b>Artists in fifteen years.</b><p style="font-size:16px;color:#55514a">Snoop as a spokesman, and one song on a parade float. No series, no festival, no tour.</p></div></div>
-      <div class="row" style="grid-template-columns:290px 1fr;padding:30px 0"><div style="font:400 84px/.9 var(--disp);color:var(--blue)">3.8M</div><div><b>People on the email list.</b><p style="font-size:16px;color:#55514a">One of the biggest owned audiences in outdoor. Nothing on the calendar to invite them to.</p></div></div>
-      <div class="row" style="grid-template-columns:290px 1fr;padding:30px 0;border-bottom:1px solid var(--rule)"><div style="font:400 84px/.9 var(--disp);color:var(--fire)">UGC</div><div><b>Beats scripted. Your words.</b><p style="font-size:16px;color:#55514a">The big campaign era is over. What works now is real people, real yards, shot like it happened.</p></div></div>
-      <div class="cap" style="margin-top:16px">Sources: Solo Brands filings, press and CMO interviews, 2023 to 2026</div>
+  <section class="slide paper" data-t="Why now">
+    <div class="k abs" style="left:120px;top:120px">01 · Why this, why now</div>
+    <h2 class="abs" style="left:116px;top:160px;font-size:92px;width:1400px">The fire's lit.<br>Where's the music<span style="color:var(--fire)">?</span></h2>
+    <p class="abs" style="left:120px;top:400px;width:600px;font-size:22px">Everything you make is built for a night with friends. The fire, the pizza, the cold drinks. The one thing missing from that night is the part people remember longest.</p>
+    <div class="ph frame" style="left:130px;top:580px;width:430px;height:250px;background-image:url(img/deck.jpg);background-position:50% 40%;transform:rotate(-2deg)"></div>
+    <div class="tape" style="left:270px;top:564px"></div>
+    <div class="hand abs" style="left:600px;top:700px;width:240px">great night.<br>no soundtrack.</div>
+    <div class="abs" style="left:900px;top:390px;width:630px">
+      <div class="row" style="grid-template-columns:270px 1fr;padding:26px 0"><div style="font:400 84px/.9 var(--disp)">2</div><p style="font-size:20px"><b>artists in fifteen years.</b> Snoop, and a band on a parade float. That's the whole list.</p></div>
+      <div class="row" style="grid-template-columns:270px 1fr;padding:26px 0"><div style="font:400 84px/.9 var(--disp);color:var(--blue)">3.8M</div><p style="font-size:20px"><b>people on your email list,</b> and no night to invite them to.</p></div>
+      <div class="row" style="grid-template-columns:270px 1fr;padding:26px 0;border-bottom:1px solid var(--rule)"><div style="font:400 84px/.9 var(--disp);color:var(--fire)">UGC</div><p style="font-size:20px"><b>beats scripted.</b> Your team said it first. So we shoot it like it happened, because it did.</p></div>
     </div>
   </section>
 
@@ -114,9 +124,9 @@
     <h2 class="abs" style="left:876px;top:170px;font-size:98px;width:700px">Backyard Sessions<span class="dot"></span></h2>
     <p class="abs" style="left:880px;top:430px;width:620px;font-size:22px">A concert series in real backyards. Emerging artists play a short set by the fire. Guests cook on the Pi, pull drinks from the Windchill, and sit around the Bonfire. One host ties every night together. We film all of it.</p>
     <div class="abs" style="left:880px;top:700px;display:flex;gap:10px">
-      <span class="mono" style="background:#111;padding:10px 14px;font-size:12px;letter-spacing:.14em">LIVE SERIES</span>
-      <span class="mono" style="background:var(--lime);color:#111;padding:10px 14px;font-size:12px;letter-spacing:.14em">CONTENT ENGINE</span>
-      <span class="mono" style="border:1px solid #fff;padding:10px 14px;font-size:12px;letter-spacing:.14em">ARTIST CREATORS</span>
+      <span class="mono" style="background:#111;padding:10px 14px;font-size:14px;letter-spacing:.12em">LIVE SERIES</span>
+      <span class="mono" style="background:var(--lime);color:#111;padding:10px 14px;font-size:14px;letter-spacing:.12em">CONTENT ENGINE</span>
+      <span class="mono" style="border:1px solid #fff;padding:10px 14px;font-size:14px;letter-spacing:.12em">ARTIST CREATORS</span>
     </div>
   </section>
 
@@ -125,10 +135,10 @@
     <div class="k abs" style="left:120px;top:120px">03 · Hands on, not on a plinth</div>
     <h2 class="abs" style="left:116px;top:164px;font-size:60px;width:1100px">Every product gets a job<span class="dot b"></span></h2>
     <div class="abs" style="left:120px;top:290px;right:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px">
-      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/lid.jpg)"></div><div class="n" style="margin-top:16px">01 · BONFIRE / SUMMIT</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE STAGE</h3><p style="font-size:15px;color:#55514a">The artist plays beside it. Every wide shot has a flame in it.</p></div>
-      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/pizza-toss.jpg);background-position:70% 40%"></div><div class="n" style="margin-top:16px">02 · PI PRIME</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE KITCHEN</h3><p style="font-size:15px;color:#55514a">Guests make their own. Dough in the air is the best b-roll you own.</p></div>
-      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/cooler.jpg)"></div><div class="n" style="margin-top:16px">03 · WINDCHILL</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE BAR</h3><p style="font-size:15px;color:#55514a">Drinks come out of it all night. The newest product gets the most hands.</p></div>
-      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/mesa.jpg)"></div><div class="n" style="margin-top:16px">04 · MESA</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">EVERY TABLE</h3><p style="font-size:15px;color:#55514a">S'mores at arm's reach. The close-up that sells the small one.</p></div>
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/lid.jpg)"></div><div class="n" style="margin-top:16px">01 · BONFIRE / SUMMIT</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE STAGE</h3><p style="font-size:17px;color:#55514a">The artist plays beside it. Every wide shot has a flame in it.</p></div>
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/pizza-toss.jpg);background-position:70% 40%"></div><div class="n" style="margin-top:16px">02 · PI PRIME</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE KITCHEN</h3><p style="font-size:17px;color:#55514a">Guests make their own. Dough in the air is the best b-roll you own.</p></div>
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/cooler.jpg)"></div><div class="n" style="margin-top:16px">03 · WINDCHILL</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">THE BAR</h3><p style="font-size:17px;color:#55514a">Drinks come out of it all night. The newest product gets the most hands.</p></div>
+      <div><div class="ph" style="position:relative;height:340px;background-image:url(img/mesa.jpg)"></div><div class="n" style="margin-top:16px">04 · MESA</div><h3 style="font:400 30px/1 var(--disp);margin:8px 0">EVERY TABLE</h3><p style="font-size:17px;color:#55514a">S'mores at arm's reach. The close-up that sells the small one.</p></div>
     </div>
     <div class="tape" style="left:400px;top:276px"></div>
     <div class="hand abs" style="right:70px;top:140px;width:300px;text-align:right">nobody demos anything.<br>they just use it.</div>
@@ -138,21 +148,23 @@
   <section class="slide graph" data-t="The night">
     <div class="k abs" style="left:120px;top:120px">04 · Run of show</div>
     <h2 class="abs" style="left:116px;top:160px;font-size:68px">One night, start to embers<span class="dot f"></span></h2>
-    <div class="abs" style="left:120px;top:290px;width:820px">
-      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">5:00</span><p><b>Load in. Light the fire.</b> Crew sets three cameras and hides them.</p></div>
-      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">6:00</span><p><b>Thirty guests arrive.</b> Pizzas go in. The cooler opens.</p></div>
-      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">7:00</span><p><b>The host opens.</b> First artist, four songs, no stage.</p></div>
-      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">7:45</span><p><b>Second artist.</b> Golden hour. This is the hero film.</p></div>
-      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0"><span class="mono" style="font-size:20px;font-weight:700">8:30</span><p><b>Song circle at the fire.</b> S'mores. The part people post.</p></div>
-      <div class="row" style="grid-template-columns:130px 1fr;padding:17px 0;border-bottom:1px solid var(--rule)"><span class="mono" style="font-size:20px;font-weight:700">9:30</span><p><b>Embers.</b> Guests leave with a song stuck in their head.</p></div>
+    <div class="abs" style="left:120px;top:290px;width:720px">
+      <div class="row" style="grid-template-columns:120px 1fr;padding:17px 0"><span class="mono" style="font-size:22px;font-weight:700">5:00</span><p><b>Load in. Light the fires.</b> Cameras go up, then disappear.</p></div>
+      <div class="row" style="grid-template-columns:120px 1fr;padding:17px 0"><span class="mono" style="font-size:22px;font-weight:700">6:00</span><p><b>50 to 150 guests arrive.</b> Pizzas go in. The coolers open.</p></div>
+      <div class="row" style="grid-template-columns:120px 1fr;padding:17px 0"><span class="mono" style="font-size:22px;font-weight:700">7:00</span><p><b>The host opens.</b> First artist, four songs, no stage.</p></div>
+      <div class="row" style="grid-template-columns:120px 1fr;padding:17px 0"><span class="mono" style="font-size:22px;font-weight:700">7:45</span><p><b>Second artist.</b> Golden hour. This is the hero film.</p></div>
+      <div class="row" style="grid-template-columns:120px 1fr;padding:17px 0"><span class="mono" style="font-size:22px;font-weight:700">8:30</span><p><b>Song circle at the fire.</b> S'mores. The part people post.</p></div>
+      <div class="row" style="grid-template-columns:120px 1fr;padding:17px 0;border-bottom:1px solid var(--rule)"><span class="mono" style="font-size:22px;font-weight:700">9:30</span><p><b>Embers.</b> Everyone leaves with a song stuck in their head.</p></div>
     </div>
-    <div class="abs" style="left:1010px;top:290px;width:510px;background:var(--lime);padding:36px 36px 40px">
+    <div class="ph frame" style="left:900px;top:300px;width:270px;height:400px;background-image:url(img/pizza-eat.jpg);background-position:40% 30%;transform:rotate(-2.5deg)"></div>
+    <div class="tape" style="left:980px;top:284px"></div>
+    <div class="abs" style="left:1210px;top:290px;width:330px;background:var(--lime);padding:28px 28px 30px">
       <div class="k">The host</div>
-      <h3 style="font:400 50px/.92 var(--disp);margin:14px 0 16px">ONE FACE. EVERY NIGHT<span class="dot b"></span></h3>
-      <p style="font-size:17px">Lights the fire, makes the first pizza, introduces the artist, asks the one good question. The host is what turns a run of events into a series people follow.</p>
-      <div class="hand" style="margin-top:18px;font-size:26px">musician first, presenter second</div>
+      <h3 style="font:400 38px/.94 var(--disp);margin:12px 0 14px">ONE FACE. EVERY NIGHT<span class="dot b"></span></h3>
+      <p style="font-size:17px">Lights the fire, makes the first pizza, introduces the artist, asks the one good question. The host is what makes it a series.</p>
+      <div class="hand" style="margin-top:16px;font-size:26px">musician first,<br>presenter second</div>
     </div>
-    <div class="abs" style="left:1010px;top:700px;width:510px;background:#111;color:#fff;padding:20px 36px"><span class="cap" style="color:var(--lime)">Guest list</span><p style="font-size:15px;margin-top:4px">Locals, Solo customers from the email list, and a few creators who will film it themselves.</p></div>
+    <div class="abs" style="left:900px;top:750px;width:640px;background:#111;color:#fff;padding:20px 28px;display:grid;grid-template-columns:150px 1fr;align-items:center;gap:16px"><span style="font:400 34px/1 var(--disp);color:var(--lime)">50–150</span><p style="font-size:17px">Neighbors, Solo customers off the email list, and creators who will film it themselves.</p></div>
   </section>
 
   <!-- 06 CONTENT ENGINE -->
@@ -163,8 +175,8 @@
     <h2 class="abs" style="left:746px;top:160px;font-size:70px;width:800px">One night. A quarter of content<span class="dot"></span></h2>
     <div class="abs" style="left:750px;top:390px;width:780px">
       <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">1</span><b>Hero film</b><span class="cap">3 to 5 min · YouTube, site, PDP</span></div>
-      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">6</span><b>Paid cuts</b><span class="cap">:15 and :30 · Meta, TikTok, CTV</span></div>
-      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">20+</span><b>Social verticals</b><span class="cap">Reels, Shorts, product moments</span></div>
+      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)" data-count="6">6</span><b>Paid cuts</b><span class="cap">:15 and :30 · Meta, TikTok, CTV</span></div>
+      <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)" data-count="20" data-suffix="+">20+</span><b>Social verticals</b><span class="cap">Reels, Shorts, product moments</span></div>
       <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0"><span style="font:400 40px/1 var(--disp);color:var(--lime)">2</span><b>Live session tracks</b><span class="cap">Original sound you own</span></div>
       <div class="row" style="grid-template-columns:110px 1fr 1fr;padding:15px 0;border-bottom:1px solid rgba(246,243,235,.2)"><span style="font:400 40px/1 var(--disp);color:var(--lime)">1</span><b>Email story</b><span class="cap">For the 3.8M · "come to the next one"</span></div>
       <div class="cap" style="margin-top:16px">Targets per session. Shot once, cut for every channel.</div>
@@ -179,9 +191,9 @@
     <h2 class="abs" style="left:116px;top:160px;font-size:80px;width:980px">Not influencers. <span style="color:var(--fire)">Songwriters</span><span class="dot b"></span></h2>
     <p class="abs" style="left:120px;top:370px;width:900px">The same artists become your creators. Ten artists, ten angles, ten ads. Each one picks a Solo moment, writes a hook around it, and films it at home with the product. It is the play we ran for Poplin, pointed at a brand with a much better prop.</p>
     <div class="abs" style="left:120px;top:560px;width:960px;display:grid;grid-template-columns:repeat(3,1fr);gap:0">
-      <div style="padding:22px 24px 26px 0;border-top:3px solid #111"><h3 style="font:400 26px/1 var(--disp)">ORIGINAL SOUND</h3><p style="font-size:15px;color:#55514a;margin-top:8px">A Solo hook that lives on Reels and TikTok long after the flight ends.</p></div>
-      <div style="padding:22px 24px 26px;border-top:3px solid var(--fire)"><h3 style="font:400 26px/1 var(--disp)">REAL BACKYARDS</h3><p style="font-size:15px;color:#55514a;margin-top:8px">First fire of fall. Pizza night. The tailgate. The dad. Shot where it happens.</p></div>
-      <div style="padding:22px 0 26px 24px;border-top:3px solid var(--blue)"><h3 style="font:400 26px/1 var(--disp)">BUILT-IN FANS</h3><p style="font-size:15px;color:#55514a;margin-top:8px">Warm audiences who already trust the person holding the guitar.</p></div>
+      <div style="padding:22px 24px 26px 0;border-top:3px solid #111"><h3 style="font:400 26px/1 var(--disp)">ORIGINAL SOUND</h3><p style="font-size:17px;color:#55514a;margin-top:8px">A Solo hook that lives on Reels and TikTok long after the flight ends.</p></div>
+      <div style="padding:22px 24px 26px;border-top:3px solid var(--fire)"><h3 style="font:400 26px/1 var(--disp)">REAL BACKYARDS</h3><p style="font-size:17px;color:#55514a;margin-top:8px">First fire of fall. Pizza night. The tailgate. The dad. Shot where it happens.</p></div>
+      <div style="padding:22px 0 26px 24px;border-top:3px solid var(--blue)"><h3 style="font:400 26px/1 var(--disp)">BUILT-IN FANS</h3><p style="font-size:17px;color:#55514a;margin-top:8px">Warm audiences who already trust the person holding the guitar.</p></div>
     </div>
     <div class="abs cap" style="left:120px;bottom:54px;display:flex;gap:22px;align-items:center"><span style="color:#111">Watch the format ↗</span>
       <a href="https://www.tiktok.com/@bonnerblack/video/7263482919706955050" target="_blank">TikTok 01</a><a href="https://www.tiktok.com/@troy_music/video/7262725044579683627" target="_blank">TikTok 02</a><a href="https://www.instagram.com/p/Cv-RrUSgo-l/?hl=en" target="_blank">Instagram</a><a href="https://drive.google.com/file/d/1fxwYziP3GYbXB90qHTVwG9eJMSeSKar4/view?usp=sharing" target="_blank">Film 01</a><a href="https://drive.google.com/file/d/1sq1ey1VHFXXf9Nku8F7uZJWWyrc3opWO/view?usp=sharing" target="_blank">Film 02</a></div>
@@ -189,27 +201,26 @@
   </section>
 
   <!-- 08 ROLLOUT -->
-  <section class="slide paper" data-t="Rollout">
+  <section class="slide paper" data-t="Rollout" data-anim="cols">
     <div class="k abs" style="left:120px;top:120px">07 · Where it goes</div>
-    <h2 class="abs" style="left:116px;top:160px;font-size:84px">Start in one yard<span class="dot"></span></h2>
-    <svg class="abs" style="left:120px;top:330px" width="1420" height="440" viewBox="0 0 1420 440" fill="none"><path d="M10 400 H330 V290 H690 V180 H1050 V70 H1400" stroke="#0A45FF" stroke-width="10"/><g fill="#0A45FF"><rect x="0" y="388" width="24" height="24"/><rect x="318" y="278" width="24" height="24"/><rect x="678" y="168" width="24" height="24"/><rect x="1038" y="58" width="24" height="24"/></g><rect x="1388" y="58" width="24" height="24" fill="#D7FF00" stroke="#111" stroke-width="2"/></svg>
-    <div class="abs" style="left:120px;top:600px;width:300px"><div class="n">01 · PILOT</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">ONE BACKYARD</h3><p style="font-size:15px;color:#55514a">North Shore Chicago. Our yard, our crew, your product. Proof in one night.</p></div>
-    <div class="abs" style="left:450px;top:452px;width:320px"><div class="n">02 · THE RUN</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">FOUR NIGHTS, NORTH SHORE</h3><p style="font-size:15px;color:#55514a">Same host, new yard each time. Enough episodes to call it a series.</p></div>
-    <div class="abs" style="left:810px;top:380px;width:330px;background:var(--lime);padding:18px 20px;margin:-18px 0 0 -20px"><div class="n" style="color:#111">03 · THE SUBSET</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">ART BACKYARDS</h3><p style="font-size:15px">A few nights hosted in the yards of sculptors, muralists and makers. The yard is already a set. The owner is already a story.</p></div>
-    <div class="abs" style="left:1170px;top:270px;width:340px"><div class="n">04 · THEN</div><h3 style="font:400 28px/1 var(--disp);margin:8px 0">CITY BY CITY</h3><p style="font-size:15px;color:#55514a">Nashville, Austin, Denver, and wherever the list is densest. Local artists every time.</p></div>
-    <div class="hand abs" style="left:150px;top:420px">small on purpose ↓</div>
+    <h2 class="abs" style="left:116px;top:160px;font-size:84px;width:1000px">Start in one yard<span class="dot"></span></h2>
+    <div class="hand abs" style="left:130px;top:388px">small on purpose ↓</div>
+    <div class="col" style="left:120px;height:400px"><div class="pic" style="background-image:url(img/patio.jpg)"></div><div class="in"><div class="big">1<small>YARD</small></div><h3>THE PILOT</h3><p>North Shore Chicago. Our yard, our crew, your product. Proof in one night.</p><div class="when">01 · OCT 2026</div></div></div>
+    <div class="col ink" style="left:476px;height:480px"><div class="pic" style="background-image:url(img/night.jpg);background-position:60% 60%"></div><div class="in"><div class="big" style="color:var(--lime)">4<small>YARDS</small></div><h3>THE NORTH SHORE RUN</h3><p>Same host, new yard each time. Four episodes is when it becomes a series people wait for.</p><div class="when">02 · SPRING 2027</div></div></div>
+    <div class="col lime" style="left:832px;height:560px"><div class="pic" style="background-image:url(img/lid.jpg);background-position:50% 35%"></div><div class="in"><div class="big">+3<small>ART BACKYARDS</small></div><h3>THE SUBSET</h3><p>A few nights in the yards of sculptors, muralists and makers. The yard is already a set. The owner is already a story. The content looks like nothing else in the category.</p><div class="when">03 · SUMMER 2027</div></div></div>
+    <div class="col" style="left:1188px;height:640px"><div class="pic" style="height:210px;background-image:url(img/beach.jpg);background-position:50% 70%"></div><div class="in"><div class="big">5<small>CITIES</small></div><h3>CITY BY CITY</h3><p>Nashville, Austin, Denver, LA, and wherever your list is densest. Local artists and a local yard every time. The host travels. The format does not change.</p><div class="when">04 · FALL 2027 ON</div></div></div>
   </section>
 
   <!-- 09 THE PILOT -->
   <section class="slide black" data-t="The pilot">
     <div class="k abs" style="left:120px;top:120px">08 · The ask</div>
-    <h2 class="abs" style="left:116px;top:160px;font-size:88px;width:1300px">One night. One yard.<br>One number<span class="dot f"></span></h2>
-    <div class="abs" style="left:120px;top:440px;right:64px;display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:0">
-      <div style="padding:26px 30px 0 0;border-top:3px solid var(--paper)"><div class="cap">We bring</div><p style="margin-top:14px;font-size:22px">The yard. The host. Two artists. A three-camera crew. The edit, the cuts and the tracks.</p></div>
-      <div style="padding:26px 30px 0;border-top:3px solid var(--fire)"><div class="cap" style="color:var(--fire)">Solo brings</div><p style="margin-top:14px;font-size:22px">Product: a Summit, a Pi Prime, a Windchill, six Mesas. One brand contact. A small paid test budget for the cuts.</p></div>
-      <div style="padding:26px 30px 30px;background:var(--lime);color:#111"><div class="cap" style="color:#111">What decides it</div><p style="margin-top:14px;font-size:22px">The cuts run against your current creative in your own media mix model. If they do not win, we stop.</p></div>
+    <h2 class="abs" style="left:116px;top:160px;font-size:88px;width:1000px">One night.<br>One yard.<br>One number<span class="dot f"></span></h2>
+    <div class="abs" style="left:120px;top:500px;right:64px;display:grid;grid-template-columns:1fr 1fr 1.15fr;gap:0">
+      <div style="padding:26px 30px 0 0;border-top:3px solid var(--paper)"><div class="cap">We bring</div><p style="margin-top:14px;font-size:21px">The yard. The host. Two artists. 50 to 150 guests. A three-camera crew. The edit, the cuts and the tracks.</p></div>
+      <div style="padding:26px 30px 0;border-top:3px solid var(--fire)"><div class="cap" style="color:var(--fire)">Solo brings</div><p style="margin-top:14px;font-size:21px">Product for a crowd: two Summits, three Pi Primes, three Windchills, a dozen Mesas. One brand contact. A small paid test budget.</p></div>
+      <div style="padding:26px 30px 30px;background:var(--lime);color:#111"><div class="cap" style="color:#111">What decides it</div><p style="margin-top:14px;font-size:21px">The cuts run against your current creative in your own media mix model. If they do not win, we stop.</p></div>
     </div>
-    <div class="abs" style="left:120px;bottom:60px;font:400 22px/1.3 var(--sans);color:#cfcbc2">"The bravest marketers pilot, learn, and adapt." <span class="cap" style="margin-left:10px">Liz Vanzura, Nov 2024</span></div>
+    <div class="abs" style="left:120px;bottom:50px;font:400 22px/1.3 var(--sans);color:#cfcbc2">"The bravest marketers pilot, learn, and adapt." <span class="cap" style="margin-left:10px">Liz Vanzura, Nov 2024</span></div>
   </section>
 
   <!-- 10 CLOSE -->
@@ -234,6 +245,7 @@
   <div id="nav"><i></i><i></i><span id="navt">Cover</span><svg viewBox="0 0 2246.4 284.24" width="103"><use href="#solo"/></svg></div>
   <div id="idx">01 / 10</div>
   <div id="bar"><i></i></div>
+  <canvas id="fx" width="1600" height="900"></canvas>
   <svg id="grain"><filter id="nz"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .55 0"/></filter><rect width="100%" height="100%" filter="url(#nz)"/></svg>
 </div>
 
@@ -245,12 +257,71 @@
     document.getElementById('idx').textContent=String(c+1).padStart(2,'0')+' / '+N;
     document.getElementById('navt').textContent=S[c].dataset.t;
     document.querySelector('#bar i').style.width=((c+1)/N*100)+'%';
-    history.replaceState(null,'',c?'#'+(c+1):location.pathname);}
+    history.replaceState(null,'',c?'#'+(c+1):location.pathname);enter(S[c]);window.__fx&&window.__fx(c);}
+  const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function enter(sl){if(RM)return;
+    const E='cubic-bezier(.16,.84,.24,1)';
+    const els=[...sl.querySelectorAll('.k,h1,h2,p.abs,.row,.ph,.tape,.hand,.sq,[style*="display:grid"]>div,[style*="display:flex"]>span,.abs>h3,.cap.abs')].filter(e=>!e.closest('.col'));
+    els.forEach((e,i)=>e.animate([{translate:'0 26px',opacity:0},{translate:'0 0',opacity:1}],{duration:700,delay:60+i*38,easing:E,fill:'backwards'}));
+    sl.querySelectorAll('.col').forEach((e,i)=>{e.animate([{scale:'1 0'},{scale:'1 1'}],{duration:900,delay:200+i*140,easing:E,fill:'backwards'});
+      e.querySelectorAll('.pic,.in>*').forEach((k,j)=>k.animate([{opacity:0,translate:'0 14px'},{opacity:1,translate:'0 0'}],{duration:500,delay:750+i*140+j*50,easing:E,fill:'backwards'}))});
+    sl.querySelectorAll('[data-count]').forEach(e=>{const to=+e.dataset.count,suf=e.dataset.suffix||'',t0=performance.now();
+      (function tick(t){const k=Math.min(1,(t-t0)/900);e.textContent=Math.round(to*(1-Math.pow(1-k,3)))+suf;if(k<1)requestAnimationFrame(tick)})(t0)});
+  }
   addEventListener('keydown',e=>{if(['ArrowRight','PageDown',' '].includes(e.key)){e.preventDefault();go(c+1)}else if(['ArrowLeft','PageUp'].includes(e.key)){e.preventDefault();go(c-1)}else if(e.key==='Home')go(0);else if(e.key==='End')go(N-1)});
   addEventListener('click',e=>{if(e.target.closest('a'))return;go(c+(e.clientX<innerWidth*.25?-1:1))});
   let tx=0;addEventListener('touchstart',e=>tx=e.changedTouches[0].clientX,{passive:true});
   addEventListener('touchend',e=>{const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(c+(d<0?1:-1))},{passive:true});
   go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+<script type="module">
+  // Embers + the perforated Solo ring. Decorative: if three fails to load, the deck is unaffected.
+  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){ try{
+  const THREE=await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+  const cv=document.getElementById('fx');
+  const r=new THREE.WebGLRenderer({canvas:cv,alpha:true,antialias:true,premultipliedAlpha:false});
+  r.setPixelRatio(Math.min(devicePixelRatio,2));r.setSize(1600,900,false);
+  const scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(40,16/9,.1,50);cam.position.z=12;
+  // embers
+  const N=innerWidth<800?450:1000,pos=new Float32Array(N*3),a=new Float32Array(N*3);
+  for(let i=0;i<N;i++){pos[i*3]=(Math.random()-.5)*18;pos[i*3+1]=(Math.random()-.5)*10;pos[i*3+2]=(Math.random()-.5)*5;a[i*3]=.25+Math.random()*.9;a[i*3+1]=Math.random()*6.28;a[i*3+2]=.5+Math.random()*1.6;}
+  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.BufferAttribute(pos,3));g.setAttribute('a',new THREE.BufferAttribute(a,3));
+  const U={t:{value:0},I:{value:1},px:{value:r.getPixelRatio()},dark:{value:1}};
+  const m=new THREE.ShaderMaterial({uniforms:U,transparent:true,depthWrite:false,blending:THREE.NormalBlending,
+    vertexShader:`attribute vec3 a;uniform float t,px;varying float vF,vL;
+      void main(){vec3 p=position;float y=mod(p.y+5.+t*a.x,10.)-5.;p.y=y;
+      p.x+=sin(t*.55+a.y+y*.7)*.45+sin(t*1.7+a.y*2.)*.08;
+      vL=smoothstep(-5.,-3.2,y)*(1.-smoothstep(1.5,5.,y));vF=.55+.45*sin(t*6.*a.x+a.y*3.);
+      vec4 mv=modelViewMatrix*vec4(p,1.);gl_Position=projectionMatrix*mv;gl_PointSize=a.z*px*(64./-mv.z)*(.7+.5*vF);}`,
+    fragmentShader:`uniform float I,dark;varying float vF,vL;
+      void main(){float d=length(gl_PointCoord-.5);float c=smoothstep(.5,.08,d);
+      vec3 hot=mix(vec3(.96,.27,.08),vec3(1.,.72,.25),vF*dark);
+      gl_FragColor=vec4(hot,c*c*vL*I*(.55+.45*vF));}`});
+  scene.add(new THREE.Points(g,m));
+  // perforated ring: Solo's airflow holes as points on a cylinder
+  const ring=new THREE.Group(),hp=[];const R=2.1;
+  for(let row=0;row<4;row++){const n=row==0?56:40,y=row==0?.95:-.55-row*.16;for(let i=0;i<n;i++){const th=i/n*6.283+(row%2)*.08;hp.push(Math.cos(th)*R,y,Math.sin(th)*R);}}
+  const hg=new THREE.BufferGeometry();hg.setAttribute('position',new THREE.Float32BufferAttribute(hp,3));
+  const dc=document.createElement('canvas');dc.width=dc.height=64;const dx=dc.getContext('2d'),gr=dx.createRadialGradient(32,32,0,32,32,32);gr.addColorStop(0,'rgba(255,190,90,1)');gr.addColorStop(.35,'rgba(240,78,35,1)');gr.addColorStop(1,'rgba(240,78,35,0)');dx.fillStyle=gr;dx.fillRect(0,0,64,64);
+  const hm=new THREE.PointsMaterial({map:new THREE.CanvasTexture(dc),size:.3,transparent:true,opacity:0,depthWrite:false,blending:THREE.AdditiveBlending});ring.add(new THREE.Points(hg,hm));
+  const lm=new THREE.LineBasicMaterial({color:0xf6f3eb,transparent:true,opacity:0});
+  [1.25,1.12,-1.25,-1.12].forEach(y=>{const c=new THREE.BufferGeometry().setFromPoints(new THREE.Path().absarc(0,0,R,0,6.283).getPoints(120));const l=new THREE.LineLoop(c,lm);l.rotation.x=Math.PI/2;l.position.y=y;ring.add(l);});
+  const wp=[];for(let i=0;i<48;i++){const th=i/48*6.283;wp.push(Math.cos(th)*R,1.12,Math.sin(th)*R,Math.cos(th)*R,-1.12,Math.sin(th)*R);}
+  const wg=new THREE.BufferGeometry();wg.setAttribute('position',new THREE.Float32BufferAttribute(wp,3));const wm=new THREE.LineBasicMaterial({color:0xf6f3eb,transparent:true,opacity:0});ring.add(new THREE.LineSegments(wg,wm));
+  ring.rotation.x=.42;scene.add(ring);
+  //            intensity, dark?, ring [x,y,scale,opacity]
+  const CFG=[[.9,1,0],[.5,0,0],[.7,1,0],[.45,0,0],[.45,0,0],[.85,1,0],[.5,0,0],[.4,0,0],[1,1,[4.4,1.7,.9,1]],[1,1,0]];
+  let T={I:.9,dark:1,rx:4.6,ry:1.9,rs:1.25,ro:0};const C={...T};
+  window.__fx=i=>{const c=CFG[i]||CFG[0];T.I=c[0];T.dark=c[1];if(c[2]){[T.rx,T.ry,T.rs,T.ro]=c[2]}else T.ro=0;cv.style.mixBlendMode=c[1]?'screen':'normal';};
+  window.__fx((parseInt(location.hash.slice(1))||1)-1);
+  const ck=new THREE.Clock();let run=true;document.addEventListener('visibilitychange',()=>{run=!document.hidden;if(run)loop()});
+  function loop(){if(!run)return;const dt=Math.min(ck.getDelta(),.05);U.t.value+=dt;
+    for(const k in T)C[k]+=(T[k]-C[k])*Math.min(1,dt*3.2);
+    U.I.value=C.I;U.dark.value=C.dark;hm.opacity=C.ro*(.75+.25*Math.sin(U.t.value*5.));lm.opacity=C.ro*.8;wm.opacity=C.ro*.16;
+    ring.position.set(C.rx,C.ry,0);ring.scale.setScalar(C.rs);ring.rotation.y+=dt*.22;ring.visible=C.ro>.01;
+    r.render(scene,cam);requestAnimationFrame(loop);}
+  loop();
+  }catch(e){console.warn('[FX] three.js layer unavailable, deck continues without it',e);} }
 </script>
 </body>
 </html>
